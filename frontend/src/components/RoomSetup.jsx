@@ -36,7 +36,7 @@ function RoomSetup({ setRoom }) {
 
     try {
 
-      const res = await fetch("http://heartlink-k62t.onrender.com/api/room/join", {
+      const res = await fetch("https://heartlink-k62t.onrender.com/api/room/join", {
         method: "POST",
         credentials: "include",
         headers: {
