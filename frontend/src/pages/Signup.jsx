@@ -23,7 +23,7 @@ e.preventDefault()
 
 try{
 
-const res = await fetch("http://heartlink-k62t.onrender.com/api/auth/register",{
+const res = await fetch("https://heartlink-k62t.onrender.com/api/auth/signup",{
 method:"POST",
 headers:{
 "Content-Type":"application/json"
@@ -31,6 +31,7 @@ headers:{
 credentials:"include",
 body:JSON.stringify(form)
 })
+
 
 const data = await res.json()
 
