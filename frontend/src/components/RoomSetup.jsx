@@ -12,7 +12,7 @@ function RoomSetup({ setRoom }) {
   const createRoom = async () => {
     try {
 
-      const res = await fetch("http://heartlink-k62t.onrender.com/api/room/create", {
+      const res = await fetch("https://heartlink-k62t.onrender.com/api/room/create", {
         method: "POST",
         credentials: "include",
         headers: {
@@ -65,7 +65,7 @@ function RoomSetup({ setRoom }) {
 
     const interval = setInterval(async () => {
 
-      const res = await fetch("http://heartlink-k62t.onrender.com/api/room/my-room", {
+      const res = await fetch("https://heartlink-k62t.onrender.com/api/room/my-room", {
         credentials: "include"
       })
 
