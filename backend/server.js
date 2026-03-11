@@ -21,9 +21,13 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use(cors({
-origin: "https://heartlink-phi.vercel.app",
+origin:["https://heartlink-phi.vercel.app"],
 credentials:true
 }))
+
+app.get("/",(req,res)=>{
+res.send("HeartLink backend running 🚀")
+})
 
 app.use("/api/auth",authRoutes)
 app.use("/api/room",roomRoutes)
@@ -32,7 +36,7 @@ const server = http.createServer(app)
 
 const io = new Server(server,{
 cors:{
-origin: "https://heartlink-phi.vercel.app",
+origin:"https://heartlink-phi.vercel.app",
 methods:["GET","POST"],
 credentials:true
 }
@@ -47,7 +51,6 @@ socket.join(roomId)
 console.log("joined room",roomId)
 })
 
-
 socket.on("sendMessage",(data)=>{
 
 io.to(data.roomId).emit("receiveMessage",{
@@ -56,7 +59,6 @@ sender:data.sender
 })
 
 })
-
 
 socket.on("updateStatus",(data)=>{
 
@@ -67,7 +69,6 @@ sender:data.sender
 })
 
 })
-
 
 socket.on("disconnect",()=>{
 console.log("User disconnected")
