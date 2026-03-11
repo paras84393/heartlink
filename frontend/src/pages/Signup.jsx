@@ -32,18 +32,17 @@ credentials:"include",
 body:JSON.stringify(form)
 })
 
-
-
 const data = await res.json()
 
 if(res.ok){
 navigate("/dashboard")
 }else{
-alert(data.message)
+alert(data.message || "Signup failed")
 }
 
 }catch(err){
 console.log(err)
+alert("Server error")
 }
 
 }
@@ -88,15 +87,17 @@ required
 />
 
 <button
+type="submit"
 className="bg-pink-500 text-white py-2 rounded hover:bg-pink-600"
+
 >
-Signup
-</button>
+
+Signup </button>
 
 </form>
 
 <p className="text-center text-sm mt-4">
-Already have account? 
+Already have account?
 <Link to="/login" className="text-pink-600 font-semibold ml-1">
 Login
 </Link>

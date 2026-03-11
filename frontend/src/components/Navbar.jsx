@@ -18,7 +18,7 @@ const fetchUser = async ()=>{
 
 try{
 
-const res = await fetch("http://heartlink-k62t.onrender.com/api/auth/me",{
+const res = await fetch("https://heartlink-k62t.onrender.com/api/auth/me",{
 credentials:"include"
 })
 
@@ -71,7 +71,7 @@ return ()=>window.removeEventListener("click",handleClick)
 // logout
 const logout = async ()=>{
 
-await fetch("http://heartlink-k62t.onrender.com/api/auth/logout",{
+await fetch("https://heartlink-k62t.onrender.com/api/auth/logout",{
 method:"POST",
 credentials:"include"
 })

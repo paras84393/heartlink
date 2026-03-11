@@ -1,6 +1,6 @@
 import { io } from "socket.io-client"
 
-const socket = io("http://heartlink-k62t.onrender.com",{
+const socket = io("https://heartlink-k62t.onrender.com",{
 withCredentials:true
 })
 
