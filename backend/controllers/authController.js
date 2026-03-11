@@ -29,7 +29,7 @@ export const register = async (req,res)=>{
 
         res.cookie("token",token,{
             httpOnly:true,
-            secure:false,
+            secure:true,
             sameSite:"lax"
         })
 
@@ -74,7 +74,7 @@ export const login = async (req,res)=>{
 
         res.cookie("token",token,{
             httpOnly:true,
-            secure:false,
+            secure:true,
             sameSite:"lax"
         })
 
