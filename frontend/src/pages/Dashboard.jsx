@@ -17,7 +17,7 @@ const [user,setUser] = useState(null)
 useEffect(()=>{
 
 const fetchUser = async ()=>{
-const res = await fetch("http://localhost:5000/api/auth/me",{credentials:"include"})
+const res = await fetch("http://heartlink-k62t.onrender.com/api/auth/me",{credentials:"include"})
 if(res.ok){
 const data = await res.json()
 setUser(data)
@@ -26,7 +26,7 @@ setUser(data)
 
 const fetchRoom = async ()=>{
 
-const res = await fetch("http://localhost:5000/api/room/my-room",{
+const res = await fetch("http://heartlink-k62t.onrender.com/api/room/my-room",{
 credentials:"include"
 })
 
