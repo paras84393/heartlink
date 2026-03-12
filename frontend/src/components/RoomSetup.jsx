@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
@@ -11,24 +10,15 @@ function RoomSetup({ setRoom }) {
   const navigate = useNavigate()
 
   const createRoom = async () => {
-
     try {
 
-      const res = await fetch(
-        "https://heartlink-k62t.onrender.com/api/room/create",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json"
-          }
+      const res = await fetch("https://heartlink-k62t.onrender.com/api/room/create", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
         }
-      )
-
-      if (!res.ok) {
-        alert("Failed to create room")
-        return
-      }
+      })
 
       const data = await res.json()
 
@@ -40,56 +30,28 @@ function RoomSetup({ setRoom }) {
     } catch (err) {
       console.log(err)
     }
-
   }
 
   const joinRoom = async () => {
 
-    if (!inviteCode) {
-      alert("Enter invite code")
-      return
-    }
-
     try {
 
-      const res = await fetch(
-        "https://heartlink-k62t.onrender.com/api/room/join",
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            code: inviteCode
-          })
-        }
-      )
+      const res = await fetch("https://heartlink-k62t.onrender.com/api/room/join", {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          code: inviteCode
+        })
+      })
 
-      if (!res.ok) {
-        alert("Failed to join room")
-        return
+      const data = await res.json()
+
+      if (data.message === "Joined room") {
+        navigate("/dashboard")
       }
-
-      // fetch room after joining
-      const roomRes = await fetch(
-        "https://heartlink-k62t.onrender.com/api/room/my-room",
-        {
-          credentials: "include"
-        }
-      )
-
-      if (roomRes.ok) {
-
-        const room = await roomRes.json()
-
-        if (room) {
-          setRoom(room)
-        }
-
-      }
-
-      navigate("/dashboard")
 
     } catch (err) {
       console.log(err)
@@ -103,29 +65,15 @@ function RoomSetup({ setRoom }) {
 
     const interval = setInterval(async () => {
 
-      try {
+      const res = await fetch("https://heartlink-k62t.onrender.com/api/room/my-room", {
+        credentials: "include"
+      })
 
-        const res = await fetch(
-          "https://heartlink-k62t.onrender.com/api/room/my-room",
-          {
-            credentials: "include"
-          }
-        )
+      const room = await res.json()
 
-        if (!res.ok) return
-
-        const room = await res.json()
-
-        if (room?.partner) {
-
-          setRoom(room)
-
-          navigate("/dashboard")
-
-        }
-
-      } catch (err) {
-        console.log(err)
+      if (room?.partner) {
+        setRoom(room)
+        navigate("/dashboard")
       }
 
     }, 2000)
@@ -152,11 +100,9 @@ function RoomSetup({ setRoom }) {
       {createdCode && (
         <div className="bg-gray-800 p-4 rounded text-center">
           <p className="text-lg">Invite Code</p>
-
           <p className="text-2xl font-bold text-pink-400">
             {createdCode}
           </p>
-
           <p className="text-sm text-gray-300">
             Waiting for your partner to join...
           </p>
@@ -180,8 +126,6 @@ function RoomSetup({ setRoom }) {
     </div>
 
   )
-
 }
 
 export default RoomSetup
-
