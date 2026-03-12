@@ -21,7 +21,9 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use(cors({
-origin:["https://heartlink-phi.vercel.app"],
+origin:["https://heartlink-phi.vercel.app",
+    "http://localhost:5173"
+],
 credentials:true
 }))
 
