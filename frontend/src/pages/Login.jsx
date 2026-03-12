@@ -34,7 +34,7 @@ body:JSON.stringify(form)
 const data = await res.json()
 
 if(res.ok){
-navigate("/dashboard")
+navigate("data.redirect")
 }else{
 alert(data.message)
 }
